@@ -1,0 +1,84 @@
+<section class="pp-section-wrap">
+  <div class="container">
+
+    <a (click)="back()" class="pp-back">
+      <i class="bi bi-arrow-left me-2"></i>Back
+    </a>
+
+    <div class="pp-hero">
+      <div class="pp-hero-icon">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+      <h1 class="pp-hero-title">Privacy policy</h1>
+      <p class="pp-hero-sub">
+        We believe your data belongs to you. This policy explains what we collect,
+        why we collect it, and how we protect it.
+      </p>
+      <span class="pp-meta">
+        <i class="bi bi-clock me-1"></i>
+        Last updated: May 12, 2026 &nbsp;·&nbsp; Effective: January 1, 2026
+      </span>
+    </div>
+
+    <div class="pp-toc">
+      <p class="pp-toc-title">Contents</p>
+      <div class="pp-toc-grid">
+        <a class="pp-toc-item" (click)="scrollTo('s0')">
+          <i class="bi bi-info-circle me-2"></i>Information we collect
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s1')">
+          <i class="bi bi-database me-2"></i>How we use your data
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s2')">
+          <i class="bi bi-share me-2"></i>Data sharing
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s3')">
+          <i class="bi bi-lock me-2"></i>Data security
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s4')">
+          <i class="bi bi-cookie me-2"></i>Cookies
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s5')">
+          <i class="bi bi-person-check me-2"></i>Your rights
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s6')">
+          <i class="bi bi-people me-2"></i>Children's privacy
+        </a>
+        <a class="pp-toc-item" (click)="scrollTo('s7')">
+          <i class="bi bi-envelope me-2"></i>Contact us
+        </a>
+      </div>
+    </div>
+
+    <div class="pp-sections">
+      <div
+        *ngFor="let sec of sections; let i = index"
+        class="pp-card"
+        [class.open]="sec.open"
+        [id]="'s' + i"
+        [@fadeUp]="'in'"
+        [style.animation-delay]="(i * 80) + 'ms'"
+      >
+        <div class="pp-card-header" (click)="toggle(i)">
+          <div class="pp-card-icon" [style.background]="sec.bg" [style.color]="sec.color">
+            <i [class]="'bi ' + sec.icon"></i>
+          </div>
+          <h2 class="pp-card-title">{{ sec.title }}</h2>
+          <i class="bi bi-chevron-down pp-chevron"></i>
+        </div>
+        <div class="pp-card-body">
+          <div class="pp-card-inner" [innerHTML]="sec.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pp-footer">
+      <p>
+        By using our platform, you agree to this privacy policy.<br>
+        Questions? Reach us at
+        <a href="mailto:privacy@yourplatform.com">privacy@yourplatform.com</a>
+      </p>
+    </div>
+
+  </div>
+</section>

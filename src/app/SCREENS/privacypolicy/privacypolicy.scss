@@ -1,0 +1,761 @@
+
+// ── Typography Colors ──────────────────────────────────
+$text-heading:     #1A1A2E;        // deep navy for headings
+$text-muted:       #6B7280;        // gray for body/muted text
+$text-light:       #9CA3AF;        // lighter hint text
+
+// ── Brand Colors ───────────────────────────────────────
+$primary:          #1A3C6E;        // deep blue (matches $blue-dark)
+$secondary:        #7B4F2E;        // brown mid tone
+
+// ── Gold / Brown Palette (already in hero) ─────────────
+$gold:             #C9933A;        // main gold
+$gold-light:       #E8B96A;        // lighter gold for text on dark
+$brown:            #7B4F2E;        // base brown
+$brown-mid:        #9B6540;        // medium brown
+$brown-dark:       #4A2810;        // deep brown
+
+// ── Blue Palette (already in hero) ────────────────────
+$blue:             #1E5FA0;        // mid blue
+$blue-dark:        #0F3566;        // deep blue
+
+// ── Background Colors ──────────────────────────────────
+$white:            #FFFFFF;
+$bg-light:         #F8F9FB;        // page background (off-white)
+$bg-secondary:     #F1F3F7;        // surface / subtle bg
+
+// ── Border ─────────────────────────────────────────────
+$border-color:     #E5E7EB;        // default border
+
+// ── Semantic ───────────────────────────────────────────
+$success:          #16A34A;        // green
+$warning:          #D97706;        // amber
+$danger:           #DC2626;        // red
+$info:             #2563EB;        // blue
+
+// ── Shadows ────────────────────────────────────────────
+$shadow-sm:        0 1px 4px rgba(0,0,0,0.06);
+$shadow-md:        0 4px 16px rgba(0,0,0,0.08);
+$shadow-lg:        0 8px 32px rgba(0,0,0,0.12);
+
+// ── Border Radius ──────────────────────────────────────
+$radius-sm:        6px;
+$radius-md:        10px;
+$radius-lg:        16px;
+$radius-xl:        24px;
+
+// ── Typography ─────────────────────────────────────────
+$font-sans:        'Inter', 'Segoe UI', sans-serif;
+$font-serif:       'Playfair Display', 'Georgia', serif;
+$font-mono:        'Fira Code', 'Courier New', monospace;
+
+// ── Black (used in rgba()) ─────────────────────────────
+$black:            #000000;
+
+
+.pp-section-wrap {
+  min-height: 100vh;
+  background: $bg-light;
+  padding: 3rem 0 5rem;
+}
+
+// Back button
+.pp-back {
+  display: inline-flex;
+  align-items: center;
+  background: $white;
+  color: $text-muted;
+  border: 1px solid $border-color;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: all 0.25s;
+  animation: slide-in-left 0.5s ease both 0.1s;
+
+  &:hover {
+    color: $text-heading;
+    border-color: $text-muted;
+    transform: translateX(-3px);
+  }
+}
+
+// Hero
+.pp-hero {
+  text-align: center;
+  padding: 1rem 0 3rem;
+  animation: fade-up 0.6s ease both 0.2s;
+}
+
+.pp-hero-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba($primary, 0.10);
+  color: $primary;
+  font-size: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.pp-hero-title {
+  font-family: $font-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: $text-heading;
+  margin-bottom: 12px;
+}
+
+.pp-hero-sub {
+  font-family: $font-sans;
+  color: $text-muted;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 1.25rem;
+}
+
+.pp-meta {
+  display: inline-flex;
+  align-items: center;
+  background: $bg-secondary;
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  color: $text-muted;
+  font-family: $font-sans;
+}
+
+// Table of contents
+.pp-toc {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  animation: fade-up 0.5s ease both 0.35s;
+}
+
+.pp-toc-title {
+  font-family: $font-sans;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $text-muted;
+  margin-bottom: 12px;
+}
+
+.pp-toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 4px 12px;
+}
+
+.pp-toc-item {
+  display: flex;
+  align-items: center;
+  font-family: $font-sans;
+  font-size: 0.84rem;
+  color: $primary;
+  padding: 5px 4px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba($primary, 0.06);
+    text-decoration: none;
+  }
+}
+
+// Accordion cards
+.pp-card {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fade-up 0.5s ease both;
+
+  &:hover {
+    border-color: darken($border-color, 8%);
+    box-shadow: $shadow-sm;
+  }
+
+  &.open {
+    border-color: rgba($primary, 0.25);
+
+    .pp-chevron { transform: rotate(180deg); }
+    .pp-card-body { max-height: 600px; }
+  }
+}
+
+.pp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pp-card-icon {
+  width: 38px; height: 38px;
+  border-radius: $radius-md;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.pp-card-title {
+  font-family: $font-sans;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: $text-heading;
+  flex: 1;
+  margin: 0;
+}
+
+.pp-chevron {
+  color: $text-muted;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.pp-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.pp-card-inner {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid $border-color;
+  padding-top: 1rem;
+
+  p {
+    font-family: $font-sans;
+    font-size: 0.88rem;
+    color: $text-muted;
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+
+    li {
+      font-family: $font-sans;
+      font-size: 0.87rem;
+      color: $text-muted;
+      line-height: 1.75;
+      padding: 3px 0 3px 18px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 4px; top: 12px;
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: $border-color;
+      }
+    }
+  }
+
+  a {
+    color: $primary;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// Highlight box
+.pp-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba($success, 0.08);
+  color: darken($success, 10%);
+  border-radius: $radius-md;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  font-family: $font-sans;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+// Contact grid
+.pp-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pp-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: $bg-light;
+  border-radius: $radius-md;
+  padding: 12px 14px;
+
+  i {
+    font-size: 1.2rem;
+    color: $primary;
+    flex-shrink: 0;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    small {
+      font-size: 0.70rem;
+      color: $text-muted;
+      font-family: $font-sans;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: $text-heading;
+      font-family: $font-sans;
+    }
+  }
+}
+
+// Footer
+.pp-footer {
+  text-align: center;
+  padding: 2.5rem 0 0;
+  animation: fade-up 0.5s ease both 1s;
+
+  p {
+    font-family: $font-sans;
+    font-size: 0.85rem;
+    color: $text-muted;
+    line-height: 1.8;
+  }
+
+  a {
+    color: $primary;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// Animations
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+// ── Privacy Policy — Dark Blue/Brown Theme ─────────────
+
+.pp-section-wrap {
+  min-height: 100vh;
+  background:
+    linear-gradient(150deg,
+      #0A1E40 0%,
+      $blue-dark 35%,
+      $blue 65%,
+      #3B2010 100%
+    );
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 0 5rem;
+
+  // Same overlay as hero
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 65% 55% at 85% 70%, rgba(123,79,46,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 20%, rgba(201,147,58,0.10) 0%, transparent 55%),
+      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Decorative shapes (same as hero)
+  &::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    top: -150px; right: -120px;
+    border-radius: 50%;
+    background: rgba(26,60,110,0.18);
+    border: 1px solid rgba(255,255,255,0.04);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ── Back Button ────────────────────────────────────────
+.pp-back {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: all 0.25s;
+  animation: slide-in-left 0.5s ease both 0.1s;
+
+  &:hover {
+    background: rgba(255,255,255,0.13);
+    color: $white;
+    border-color: rgba(201,147,58,0.50);
+    color: $gold-light;
+    transform: translateX(-3px);
+  }
+}
+
+// ── Hero ───────────────────────────────────────────────
+.pp-hero {
+  text-align: center;
+  padding: 1rem 0 3rem;
+  animation: fade-up 0.6s ease both 0.2s;
+}
+
+.pp-hero-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(201,147,58,0.15);
+  border: 2px solid rgba(201,147,58,0.35);
+  color: $gold-light;
+  font-size: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow:
+    0 0 0 12px rgba(201,147,58,0.06),
+    0 0 0 24px rgba(201,147,58,0.03);
+}
+
+.pp-hero-title {
+  font-family: $font-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: $white;
+  margin-bottom: 12px;
+}
+
+.pp-hero-sub {
+  font-family: $font-sans;
+  color: rgba(255,255,255,0.65);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 1.25rem;
+}
+
+.pp-meta {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(201,147,58,0.12);
+  border: 1px solid rgba(201,147,58,0.25);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  color: $gold-light;
+  font-family: $font-sans;
+  font-weight: 500;
+}
+
+// ── Table of Contents ──────────────────────────────────
+.pp-toc {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: $radius-lg;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  animation: fade-up 0.5s ease both 0.35s;
+}
+
+.pp-toc-title {
+  font-family: $font-sans;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.40);
+  margin-bottom: 12px;
+}
+
+.pp-toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 4px 12px;
+}
+
+.pp-toc-item {
+  display: flex;
+  align-items: center;
+  font-family: $font-sans;
+  font-size: 0.84rem;
+  color: $gold-light;
+  padding: 5px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(201,147,58,0.12);
+    text-decoration: none;
+    color: $white;
+  }
+}
+
+// ── Accordion Cards ────────────────────────────────────
+.pp-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: $radius-lg;
+  margin-bottom: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fade-up 0.5s ease both;
+  transition: border-color 0.25s, background 0.25s;
+
+  &:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(201,147,58,0.30);
+  }
+
+  &.open {
+    border-color: rgba(201,147,58,0.40);
+    background: rgba(255,255,255,0.08);
+
+    .pp-chevron { transform: rotate(180deg); }
+    .pp-card-body { max-height: 600px; }
+  }
+}
+
+.pp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pp-card-icon {
+  width: 38px; height: 38px;
+  border-radius: $radius-md;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  // color and background come from inline [style] binding in component
+}
+
+.pp-card-title {
+  font-family: $font-sans;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: $white;
+  flex: 1;
+  margin: 0;
+}
+
+.pp-chevron {
+  color: rgba(255,255,255,0.40);
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.pp-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.pp-card-inner {
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+
+  p {
+    font-family: $font-sans;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+
+    li {
+      font-family: $font-sans;
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      padding: 3px 0 3px 18px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 4px; top: 12px;
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: rgba(201,147,58,0.60);
+      }
+    }
+  }
+
+  a {
+    color: $gold-light;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover { text-decoration: underline; color: $white; }
+  }
+}
+
+// ── Highlight Box ──────────────────────────────────────
+.pp-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(22,163,74,0.12);
+  border: 1px solid rgba(22,163,74,0.25);
+  color: #6EE7A0;
+  border-radius: $radius-md;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  font-family: $font-sans;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+// ── Contact Grid ───────────────────────────────────────
+.pp-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pp-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: $radius-md;
+  padding: 12px 14px;
+  transition: background 0.2s;
+
+  &:hover { background: rgba(255,255,255,0.10); }
+
+  i {
+    font-size: 1.2rem;
+    color: $gold-light;
+    flex-shrink: 0;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    small {
+      font-size: 0.70rem;
+      color: rgba(255,255,255,0.40);
+      font-family: $font-sans;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      font-family: $font-sans;
+    }
+  }
+}
+
+// ── Footer ─────────────────────────────────────────────
+.pp-footer {
+  text-align: center;
+  padding: 2.5rem 0 0;
+  animation: fade-up 0.5s ease both 1s;
+
+  p {
+    font-family: $font-sans;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+  }
+
+  a {
+    color: $gold-light;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover { text-decoration: underline; color: $white; }
+  }
+}
+
+// ── Animations ─────────────────────────────────────────
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+// .pp-hero-sub{
+//   font-family: $font-sans;
+//   color: rgba(201,147,58,0.75);   // ← brown/gold tone
+//   font-size: 1.05rem;
+//   line-height: 1.8;
+//   max-width: 520px;
+//   margin: 0 auto 1.25rem;
+// }
+// pp-card-inner
+.pp-card-body {
+    font-family: $font-sans;
+    color: rgba(201,147,58,0.75); 
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
