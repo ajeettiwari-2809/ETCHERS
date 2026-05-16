@@ -1,0 +1,500 @@
+<!-- ============================================================
+     career.component.html  –  Etches Academy | Career Page
+     ============================================================ -->
+
+<!-- TOP NAVIGATION BAR -->
+<nav class="top-nav">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <a class="back-btn" (click)="goBack()">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+        <span>Back</span>
+      </a>
+
+      <div class="brand-center">
+        <span class="brand-logo">
+          <i class="bi bi-mortarboard-fill"></i>
+        </span>
+        <span class="brand-name">ETCHERS <em>ACADEMY</em></span>
+      </div>
+
+      <span class="nav-label d-none d-md-block">CAREERS</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-bg-overlay"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-7" data-aos="fade-right">
+        <span class="hero-badge">
+          <i class="bi bi-star-fill"></i> We're Hiring
+        </span>
+        <h1 class="hero-title">
+          Shape the Future of<br/>
+          <span class="highlight">Education</span> With Us
+        </h1>
+        <p class="hero-subtitle">
+          At ETCHERS Academy, passionate educators and innovators drive real change.
+          Join our mission and help thousands of students unlock their potential.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">120+</span>
+            <span class="stat-label">Team Members</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">15k+</span>
+            <span class="stat-label">Students Enrolled</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">8</span>
+            <span class="stat-label">Open Roles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center" data-aos="fade-left">
+        <div class="hero-orb">
+          <div class="orb-ring orb-ring--1"></div>
+          <div class="orb-ring orb-ring--2"></div>
+          <div class="orb-core">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- ── LEFT: APPLICATION FORM ── -->
+      <div class="col-lg-8">
+        <div class="form-card" [class.submitted]="isSubmitted">
+
+          <!-- Card Header -->
+          <div class="form-card-header">
+            <div>
+              <h2><i class="bi bi-send-fill me-2"></i>Apply Now</h2>
+              <p *ngIf="!isSubmitted">Complete the form — we'll respond within 3 business days.</p>
+              <p *ngIf="isSubmitted">We've received your application!</p>
+            </div>
+            <!-- Progress Steps -->
+            <div class="form-steps d-none d-md-flex">
+              <div class="step" [class.active]="currentStep >= 1" [class.done]="currentStep > 1">
+                <span class="step-num">
+                  <i class="bi bi-check-lg" *ngIf="currentStep > 1"></i>
+                  <span *ngIf="currentStep <= 1">1</span>
+                </span>
+                <span class="step-lbl">Personal</span>
+              </div>
+              <div class="step-connector" [class.done]="currentStep > 1"></div>
+              <div class="step" [class.active]="currentStep >= 2" [class.done]="currentStep > 2">
+                <span class="step-num">
+                  <i class="bi bi-check-lg" *ngIf="currentStep > 2"></i>
+                  <span *ngIf="currentStep <= 2">2</span>
+                </span>
+                <span class="step-lbl">Role</span>
+              </div>
+              <div class="step-connector" [class.done]="currentStep > 2"></div>
+              <div class="step" [class.active]="currentStep >= 3" [class.done]="isSubmitted">
+                <span class="step-num">
+                  <i class="bi bi-check-lg" *ngIf="isSubmitted"></i>
+                  <span *ngIf="!isSubmitted">3</span>
+                </span>
+                <span class="step-lbl">Documents</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ SUCCESS PANEL ═══ -->
+          <div class="success-panel" *ngIf="isSubmitted">
+            <div class="success-icon">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <h3>Application Submitted!</h3>
+            <p>
+              Thank you, <strong>{{ careerForm.get('fullName')?.value }}</strong>!
+              Our HR team will review your application and reach out to
+              <strong>{{ careerForm.get('email')?.value }}</strong> soon.
+            </p>
+            <button class="btn-outline-brown mt-4" (click)="resetForm()">
+              <i class="bi bi-arrow-counterclockwise me-2"></i>Submit Another
+            </button>
+          </div>
+
+          <!-- ═══ FORM ═══ -->
+          <form
+            class="form-body"
+            *ngIf="!isSubmitted"
+            [formGroup]="careerForm"
+            (ngSubmit)="onSubmit()"
+            novalidate>
+
+            <!-- ── SECTION 1: PERSONAL INFORMATION ── -->
+            <div class="form-section-label">
+              <i class="bi bi-person-badge-fill"></i> Personal Information
+            </div>
+
+            <div class="row g-3">
+
+              <!-- Full Name -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Full Name <span class="req">*</span>
+                </label>
+                <div class="input-wrap" [class.valid]="isValid('fullName')" [class.invalid]="isInvalid('fullName')">
+                  <i class="bi bi-person-fill input-icon"></i>
+                  <input
+                    type="text"
+                    class="field-input"
+                    formControlName="fullName"
+                    placeholder="e.g. Priya Sharma"
+                    autocomplete="name"/>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('fullName')">
+                  <i class="bi bi-exclamation-circle me-1"></i>
+                  <span *ngIf="careerForm.get('fullName')?.errors?.['required']">Full name is required.</span>
+                  <span *ngIf="careerForm.get('fullName')?.errors?.['minlength']">Minimum 3 characters required.</span>
+                  <span *ngIf="careerForm.get('fullName')?.errors?.['pattern']">Only letters and spaces allowed.</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Email Address <span class="req">*</span>
+                </label>
+                <div class="input-wrap" [class.valid]="isValid('email')" [class.invalid]="isInvalid('email')">
+                  <i class="bi bi-envelope-fill input-icon"></i>
+                  <input
+                    type="email"
+                    class="field-input"
+                    formControlName="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"/>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('email')">
+                  <i class="bi bi-exclamation-circle me-1"></i>
+                  <span *ngIf="careerForm.get('email')?.errors?.['required']">Email is required.</span>
+                  <span *ngIf="careerForm.get('email')?.errors?.['email']">Enter a valid email address.</span>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Contact Number <span class="req">*</span>
+                </label>
+                <div class="input-wrap" [class.valid]="isValid('phone')" [class.invalid]="isInvalid('phone')">
+                  <i class="bi bi-telephone-fill input-icon"></i>
+                  <input
+                    type="tel"
+                    class="field-input"
+                    formControlName="phone"
+                    placeholder="+91 98765 43210"
+                    maxlength="15"/>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('phone')">
+                  <i class="bi bi-exclamation-circle me-1"></i>
+                  <span *ngIf="careerForm.get('phone')?.errors?.['required']">Contact number is required.</span>
+                  <span *ngIf="careerForm.get('phone')?.errors?.['pattern']">Enter a valid 10-digit number.</span>
+                </div>
+              </div>
+
+              <!-- Experience -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Years of Experience <span class="req">*</span>
+                </label>
+                <div class="input-wrap select-wrap" [class.valid]="isValid('experience')" [class.invalid]="isInvalid('experience')">
+                  <i class="bi bi-briefcase-fill input-icon"></i>
+                  <select class="field-input field-select" formControlName="experience">
+                    <option value="">Select experience</option>
+                    <option *ngFor="let opt of experienceOptions" [value]="opt.value">{{ opt.label }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down select-arrow"></i>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('experience')">
+                  <i class="bi bi-exclamation-circle me-1"></i> Please select your experience level.
+                </div>
+              </div>
+
+            </div><!-- /row -->
+
+            <div class="section-divider"></div>
+
+            <!-- ── SECTION 2: ROLE & DEPARTMENT ── -->
+            <div class="form-section-label">
+              <i class="bi bi-building-fill"></i> Role & Department
+            </div>
+
+            <div class="row g-3">
+
+              <!-- Department -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Department <span class="req">*</span>
+                </label>
+                <div class="input-wrap select-wrap" [class.valid]="isValid('department')" [class.invalid]="isInvalid('department')">
+                  <i class="bi bi-diagram-3-fill input-icon"></i>
+                  <select
+                    class="field-input field-select"
+                    formControlName="department"
+                    (change)="onDepartmentChange()">
+                    <option value="">Select department</option>
+                    <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down select-arrow"></i>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('department')">
+                  <i class="bi bi-exclamation-circle me-1"></i> Please select a department.
+                </div>
+              </div>
+
+              <!-- Role -->
+              <div class="col-md-6">
+                <label class="field-label">
+                  Role Applying For <span class="req">*</span>
+                </label>
+                <div class="input-wrap select-wrap" [class.valid]="isValid('role')" [class.invalid]="isInvalid('role')">
+                  <i class="bi bi-person-workspace input-icon"></i>
+                  <select
+                    class="field-input field-select"
+                    formControlName="role"
+                    [disabled]="availableRoles.length === 0">
+                    <option value="">
+                      {{ availableRoles.length === 0 ? 'Select department first' : 'Select a role' }}
+                    </option>
+                    <option *ngFor="let r of availableRoles" [value]="r">{{ r }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down select-arrow"></i>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('role')">
+                  <i class="bi bi-exclamation-circle me-1"></i> Please select a role.
+                </div>
+              </div>
+
+              <!-- Work Mode -->
+              <div class="col-md-6">
+                <label class="field-label">Preferred Work Mode</label>
+                <div class="input-wrap select-wrap">
+                  <i class="bi bi-laptop-fill input-icon"></i>
+                  <select class="field-input field-select" formControlName="workMode">
+                    <option value="">No preference</option>
+                    <option *ngFor="let m of workModes" [value]="m">{{ m }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down select-arrow"></i>
+                </div>
+              </div>
+
+              <!-- Join Date -->
+              <div class="col-md-6">
+                <label class="field-label">Available to Join</label>
+                <div class="input-wrap" [class.invalid]="isInvalid('joinDate')">
+                  <i class="bi bi-calendar3 input-icon"></i>
+                  <input
+                    type="date"
+                    class="field-input"
+                    formControlName="joinDate"
+                    [min]="minDate"/>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('joinDate')">
+                  <i class="bi bi-exclamation-circle me-1"></i> Join date cannot be in the past.
+                </div>
+              </div>
+
+            </div><!-- /row -->
+
+            <div class="section-divider"></div>
+
+            <!-- ── SECTION 3: DOCUMENTS ── -->
+            <div class="form-section-label">
+              <i class="bi bi-file-earmark-arrow-up-fill"></i> Documents & Details
+            </div>
+
+            <div class="row g-3">
+
+              <!-- Resume Upload -->
+              <div class="col-12">
+                <label class="field-label">
+                  Upload Resume <span class="req">*</span>
+                </label>
+                <div
+                  class="drop-zone"
+                  [class.drag-over]="isDragOver"
+                  [class.has-file]="resumeFile"
+                  [class.drop-error]="submitted && !resumeFile"
+                  (dragover)="onDragOver($event)"
+                  (dragleave)="onDragLeave()"
+                  (drop)="onDrop($event)"
+                  (click)="fileInput.click()">
+                  <input
+                    #fileInput
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    (change)="onFileChange($event)"
+                    style="display:none"/>
+
+                  <ng-container *ngIf="!resumeFile">
+                    <i class="bi bi-cloud-arrow-up-fill drop-icon"></i>
+                    <p class="drop-text">Drag & drop your resume or <span class="drop-link">browse files</span></p>
+                    <p class="drop-hint">PDF, DOC, DOCX &nbsp;·&nbsp; Max 5 MB</p>
+                  </ng-container>
+
+                  <ng-container *ngIf="resumeFile">
+                    <i class="bi bi-file-earmark-check-fill drop-icon uploaded"></i>
+                    <p class="drop-text file-name">{{ resumeFile.name }}</p>
+                    <p class="drop-hint">{{ formatFileSize(resumeFile.size) }} &nbsp;·&nbsp;
+                      <span class="remove-link" (click)="removeFile($event)">Remove</span>
+                    </p>
+                  </ng-container>
+                </div>
+                <div class="field-error" *ngIf="submitted && !resumeFile">
+                  <i class="bi bi-exclamation-circle me-1"></i> Please upload your resume.
+                </div>
+              </div>
+
+              <!-- Portfolio URL -->
+              <div class="col-12">
+                <label class="field-label">LinkedIn / Portfolio URL</label>
+                <div class="input-wrap" [class.valid]="isValid('portfolio')" [class.invalid]="isInvalid('portfolio')">
+                  <i class="bi bi-link-45deg input-icon"></i>
+                  <input
+                    type="url"
+                    class="field-input"
+                    formControlName="portfolio"
+                    placeholder="https://linkedin.com/in/yourprofile"/>
+                </div>
+                <div class="field-error" *ngIf="isInvalid('portfolio')">
+                  <i class="bi bi-exclamation-circle me-1"></i>
+                  <span *ngIf="careerForm.get('portfolio')?.errors?.['pattern']">URL must start with https://</span>
+                </div>
+              </div>
+
+              <!-- Additional Info -->
+              <div class="col-12">
+                <label class="field-label">Additional Information</label>
+                <textarea
+                  class="field-input field-textarea"
+                  formControlName="additionalInfo"
+                  rows="4"
+                  maxlength="500"
+                  placeholder="Tell us about your skills, motivation, or anything you'd like us to know...">
+                </textarea>
+                <div class="char-counter">
+                  <span [class.near-limit]="charCount > 400" [class.at-limit]="charCount >= 500">
+                    {{ charCount }}
+                  </span> / 500 characters
+                </div>
+              </div>
+
+              <!-- Consent -->
+              <div class="col-12">
+                <div class="consent-row" [class.consent-error]="submitted && !careerForm.get('consent')?.value">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" formControlName="consent"/>
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-label">
+                      I consent to Etches Academy storing and processing my personal data for recruitment purposes.
+                      <span class="req">*</span>
+                    </span>
+                  </label>
+                </div>
+                <div class="field-error" *ngIf="submitted && isInvalid('consent')">
+                  <i class="bi bi-exclamation-circle me-1"></i> You must agree to the consent to proceed.
+                </div>
+              </div>
+
+            </div><!-- /row -->
+
+            <!-- FORM ACTIONS -->
+            <div class="form-actions">
+              <button type="submit" class="btn-primary-blue" [class.loading]="isLoading">
+                <span class="btn-inner">
+                  <i class="bi bi-send-fill me-2" *ngIf="!isLoading"></i>
+                  <span class="spinner me-2" *ngIf="isLoading"></span>
+                  {{ isLoading ? 'Submitting...' : 'Submit Application' }}
+                </span>
+              </button>
+              <button type="button" class="btn-ghost" (click)="resetForm()">
+                <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+              </button>
+              <span class="req-note">Fields marked <span class="req">*</span> are required</span>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: SIDEBAR ── -->
+      <div class="col-lg-4">
+
+        <!-- Open Roles Card -->
+        <div class="sidebar-card">
+          <h4 class="sidebar-card-title">
+            <i class="bi bi-briefcase-fill"></i> Open Roles
+          </h4>
+          <div class="role-chips">
+            <span class="role-chip" *ngFor="let r of openRoles">{{ r }}</span>
+          </div>
+        </div>
+
+        <!-- Perks Card -->
+        <div class="sidebar-card">
+          <h4 class="sidebar-card-title">
+            <i class="bi bi-gift-fill"></i> Why ETCHERS Academy?
+          </h4>
+          <div class="perk-list">
+            <div class="perk-item" *ngFor="let perk of perks">
+              <div class="perk-icon">
+                <i [class]="'bi ' + perk.icon"></i>
+              </div>
+              <div class="perk-body">
+                <h6>{{ perk.title }}</h6>
+                <p>{{ perk.desc }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HR Contact Card -->
+        <div class="sidebar-card sidebar-card--dark">
+          <h4 class="sidebar-card-title">
+            <i class="bi bi-headset"></i> HR Contact
+          </h4>
+          <p class="sidebar-muted">Have questions before applying?</p>
+          <a href="mailto:careers@etchesacademy.in" class="contact-link">
+            <i class="bi bi-envelope-fill me-2"></i>careers@etchesacademy.in
+          </a>
+          <a href="tel:+919876543210" class="contact-link mt-2">
+            <i class="bi bi-telephone-fill me-2"></i>+91 98765 43210
+          </a>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div><!-- /row -->
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="container">
+    <span>&copy; {{ currentYear }} <strong>ETCHERS Academy</strong>. All rights reserved.</span>
+    <span class="footer-links">
+      <a  [routerLink]="['/privacy-policy']">Privacy Policy</a>
+      <a [routerLink]="['/terms-of-use']">Terms of Use</a>
+    </span>
+  </div>
+</footer>

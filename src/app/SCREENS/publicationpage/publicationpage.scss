@@ -1,0 +1,785 @@
+
+$blue-dark: #0A1E40;
+$blue: #1A3C6E;
+$gold: #C9933A;
+$gold-light: #F5C16C;
+$brown-mid: #7B4F2E;
+$white: #FFFFFF;
+// ══════════════════════════════════════════════════════
+// _variables.scss — Global Design Tokens
+// ══════════════════════════════════════════════════════
+
+
+// ── Typography ─────────────────────────────────────────
+$font-sans:        'Inter', 'Segoe UI', system-ui, sans-serif;
+$font-serif:       'Playfair Display', 'Georgia', serif;
+$font-mono:        'Fira Code', 'Courier New', monospace;
+
+
+// ── Brand Blue Palette ─────────────────────────────────
+$blue-xlight:      #D6E8F8;
+$blue-light:       #85B7EB;
+$blue:             #1E5FA0;
+$blue-mid:         #1A3C6E;
+$blue-dark:        #0F3566;
+$blue-xdark:       #0A1E40;
+
+
+// ── Brand Brown / Gold Palette ─────────────────────────
+$brown-xlight:     #F5E6D3;
+$brown-light:      #D4A574;
+$brown:            #7B4F2E;
+$brown-mid:        #9B6540;
+$brown-dark:       #5C3418;
+$brown-xdark:      #3B2010;
+
+$gold-light:       #E8B96A;
+$gold:             #C9933A;
+$gold-dark:        #A87828;
+
+
+// ── Text Colors ────────────────────────────────────────
+$text-heading:     #1A1A2E;
+$text-body:        #374151;
+$text-muted:       #6B7280;
+$text-light:       #9CA3AF;
+$text-hint:        #C0C6D0;
+$text-white:       #FFFFFF;
+$text-white-70:    rgba(255, 255, 255, 0.70);
+$text-white-60:    rgba(255, 255, 255, 0.60);
+$text-white-50:    rgba(255, 255, 255, 0.50);
+$text-white-40:    rgba(255, 255, 255, 0.40);
+
+
+// ── Background Colors ──────────────────────────────────
+$white:            #FFFFFF;
+$black:            #000000;
+$bg:               #F8F9FB;
+$bg-light:         #F8F9FB;
+$bg-secondary:     #F1F3F7;
+$bg-tertiary:      #E8ECF2;
+$bg-dark:          #0A1E40;
+
+
+// ── Semantic — Success ─────────────────────────────────
+$success:          #16A34A;
+$success-light:    #EAF3DE;
+$success-dark:     #0F6E56;
+$success-glow:     #6EE7A0;
+
+
+// ── Semantic — Warning ─────────────────────────────────
+$warning:          #D97706;
+$warning-light:    #FAEEDA;
+$warning-dark:     #92400E;
+
+
+// ── Semantic — Danger / Error ──────────────────────────
+$danger:           #DC2626;
+$danger-light:     #FCEBEB;
+$danger-dark:      #991B1B;
+
+
+// ── Semantic — Info ────────────────────────────────────
+$info:             #2563EB;
+$info-light:       #E6F1FB;
+$info-dark:        #1D4ED8;
+
+
+// ── Primary & Secondary (alias) ────────────────────────
+$primary:          $blue-mid;         // #1A3C6E
+$primary-light:    $blue-light;       // #85B7EB
+$primary-dark:     $blue-dark;        // #0F3566
+$secondary:        $brown;            // #7B4F2E
+$secondary-light:  $brown-light;      // #D4A574
+$secondary-dark:   $brown-dark;       // #5C3418
+$accent:           $gold;             // #C9933A
+$accent-light:     $gold-light;       // #E8B96A
+
+
+// ── Border ─────────────────────────────────────────────
+$border-color:     #E5E7EB;
+$border-light:     #F3F4F6;
+$border-dark:      #D1D5DB;
+$border-glass:     rgba(255, 255, 255, 0.12);
+$border-gold:      rgba(201, 147, 58, 0.38);
+
+
+// ── Shadows ────────────────────────────────────────────
+$shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-sm:        0 1px 4px rgba(0, 0, 0, 0.06);
+$shadow-md:        0 4px 16px rgba(0, 0, 0, 0.08);
+$shadow-lg:        0 8px 32px rgba(0, 0, 0, 0.12);
+$shadow-xl:        0 16px 48px rgba(0, 0, 0, 0.18);
+$shadow-gold:      0 8px 24px rgba(123, 79, 46, 0.45);
+$shadow-blue:      0 8px 24px rgba(26, 60, 110, 0.35);
+
+
+// ── Border Radius ──────────────────────────────────────
+$radius-xs:        4px;
+$radius-sm:        6px;
+$radius-md:        10px;
+$radius-lg:        16px;
+$radius-xl:        24px;
+$radius-2xl:       32px;
+$radius-full:      9999px;
+
+
+// ── Spacing (used in padding/margin helpers) ───────────
+$space-1:          4px;
+$space-2:          8px;
+$space-3:          12px;
+$space-4:          16px;
+$space-5:          20px;
+$space-6:          24px;
+$space-8:          32px;
+$space-10:         40px;
+$space-12:         48px;
+$space-16:         64px;
+
+
+// ── Z-index layers ─────────────────────────────────────
+$z-behind:         -1;
+$z-base:            0;
+$z-raised:          1;
+$z-dropdown:       100;
+$z-sticky:         200;
+$z-overlay:        300;
+$z-modal:          400;
+$z-toast:          500;
+
+
+// ── Transitions ────────────────────────────────────────
+$transition-fast:  all 0.15s ease;
+$transition-base:  all 0.25s ease;
+$transition-slow:  all 0.40s ease;
+$transition-spring: all 0.40s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+// ── Glassmorphism helpers ──────────────────────────────
+$glass-bg:         rgba(255, 255, 255, 0.06);
+$glass-bg-hover:   rgba(255, 255, 255, 0.10);
+$glass-border:     rgba(255, 255, 255, 0.12);
+$glass-blur:       blur(12px);
+
+
+// ── Hero gradient (reusable) ───────────────────────────
+$gradient-hero:
+  linear-gradient(150deg,
+    #0A1E40 0%,
+    $blue-dark 35%,
+    $blue 65%,
+    #3B2010 100%
+  );
+
+$gradient-gold:
+  linear-gradient(135deg, $gold, $brown-mid);
+
+$gradient-blue:
+  linear-gradient(135deg, $blue-xdark, $blue-mid);
+
+
+// ── Page wrapper ───────────────────────────────────────
+.pub-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(150deg,
+      $blue-dark 0%,
+      $blue-dark 35%,
+      $blue 65%,
+      $brown-mid 100%
+    );
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 5rem;
+}
+
+.pub-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 85% 70%, rgba(123,79,46,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 20%, rgba(201,147,58,0.10) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pub-shape {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  &-1 {
+    width: 500px; height: 500px; top: -150px; right: -100px;
+    background: rgba(26,60,110,0.18);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  &-2 {
+    width: 320px; height: 320px; bottom: -80px; left: -80px;
+    background: rgba(123,79,46,0.15);
+  }
+}
+
+.pub-inner {
+  position: relative; z-index: 1;
+}
+
+// ── Hero ───────────────────────────────────────────────
+.pub-hero {
+  text-align: center;
+  padding: 4rem 1.5rem 2.5rem;
+  animation: fade-up 0.6s ease both 0.1s;
+}
+
+.pub-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(201,147,58,0.18);
+  color: $gold-light;
+  border: 1px solid rgba(201,147,58,0.38);
+  padding: 6px 18px; border-radius: 50px;
+  font-family: $font-sans;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.pub-title {
+  font-family: $font-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: $white;
+  line-height: 1.15;
+  margin-bottom: 12px;
+
+  em {
+    font-style: normal;
+    color: $gold-light;
+  }
+}
+
+.pub-subtitle {
+  font-family: $font-sans;
+  color: rgba(255,255,255,0.60);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+.pub-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+
+.pub-stat {
+  text-align: center;
+  strong {
+    display: block;
+    font-family: $font-serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: $white; line-height: 1;
+  }
+  span {
+    font-family: $font-sans;
+    font-size: 0.70rem;
+    color: rgba(255,255,255,0.50);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+.pub-divider {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, transparent, $gold, transparent);
+}
+
+// ── Tabs ───────────────────────────────────────────────
+.pub-tabs {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 0 1.5rem 2.5rem;
+  flex-wrap: wrap;
+  animation: fade-up 0.5s ease both 0.25s;
+}
+
+.pub-tab {
+  display: inline-flex; align-items: center;
+  padding: 8px 20px; border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.65);
+  font-family: $font-sans;
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    border-color: rgba(201,147,58,0.40);
+    color: $gold-light;
+    background: rgba(201,147,58,0.10);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, $gold, $brown-mid);
+    border-color: transparent;
+    color: $white;
+  }
+}
+
+// ── Section wrapper ────────────────────────────────────
+.pub-section {
+  padding: 0 1.5rem 3rem;
+  animation: fade-up 0.5s ease both 0.3s;
+}
+
+.pub-section-label {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    font-family: $font-sans;
+    font-size: 1.1rem; font-weight: 800;
+    color: $white; white-space: nowrap;
+    margin: 0;
+  }
+
+  .label-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(201,147,58,0.40), transparent);
+  }
+
+  .label-badge {
+    font-family: $font-sans;
+    font-size: 0.70rem; font-weight: 700;
+    color: $gold-light;
+    background: rgba(201,147,58,0.15);
+    border: 1px solid rgba(201,147,58,0.30);
+    padding: 3px 10px; border-radius: 50px;
+    white-space: nowrap;
+  }
+}
+
+// ── Featured card ──────────────────────────────────────
+.pub-featured-card {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  transition: border-color 0.3s;
+
+  &:hover { border-color: rgba(201,147,58,0.45); }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pub-featured-cover {
+  min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #0F2548, #1A3C6E, #C9933A, #7B4F2E);
+  position: relative; overflow: hidden;
+
+  i {
+    font-size: 5rem;
+    color: rgba(255,255,255,0.25);
+    position: relative; z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent 60%, rgba(10,30,64,0.60));
+  }
+}
+
+.pub-featured-body {
+  padding: 28px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.featured-tag {
+  font-family: $font-sans;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: $gold-light;
+  margin-bottom: 8px;
+}
+
+.pub-featured-body h2 {
+  font-family: $font-serif;
+  font-size: 1.35rem; font-weight: 900;
+  color: $white;
+  margin-bottom: 10px; line-height: 1.3;
+}
+
+.pub-featured-body p {
+  font-family: $font-sans;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.60);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.featured-meta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.featured-meta-item {
+  display: flex; align-items: center; gap: 5px;
+  font-family: $font-sans;
+  font-size: 0.80rem;
+  color: rgba(255,255,255,0.55);
+
+  i { font-size: 0.9rem; color: $gold; }
+}
+
+.featured-bottom {
+  display: flex; align-items: center;
+  gap: 20px; flex-wrap: wrap;
+}
+
+.featured-price {
+  font-family: $font-serif;
+  font-size: 1.8rem; font-weight: 900;
+  color: $gold-light; line-height: 1;
+
+  small {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-weight: 400;
+    font-family: $font-sans;
+  }
+}
+
+.featured-btns {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+// ── Buttons ────────────────────────────────────────────
+.btn-gold {
+  display: inline-flex; align-items: center;
+  background: linear-gradient(135deg, $gold, $brown-mid);
+  color: $white; border: none;
+  padding: 11px 24px; border-radius: 50px;
+  font-family: $font-sans; font-weight: 800; font-size: 0.90rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(123,79,46,0.45);
+  }
+}
+
+.btn-glass {
+  display: inline-flex; align-items: center;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.80);
+  border: 1px solid rgba(255,255,255,0.20);
+  padding: 11px 24px; border-radius: 50px;
+  font-family: $font-sans; font-weight: 700; font-size: 0.90rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(201,147,58,0.40);
+    color: $gold-light;
+  }
+}
+
+// ── Cards grid ─────────────────────────────────────────
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+
+
+// ── Card cover ─────────────────────────────────────────
+.pub-card-cover {
+  position: relative;
+  height: 160px; overflow: hidden;
+}
+
+.pub-card-cover-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+
+  i {
+    font-size: 2.8rem;
+    color: rgba(255,255,255,0.28);
+    position: relative; z-index: 1;
+  }
+}
+
+// Cover gradients — ebooks
+.ebook-cover-1 { background: linear-gradient(135deg, #0F2548, #1A3C6E, #7B4F2E); }
+.ebook-cover-2 { background: linear-gradient(135deg, #5C3418, #7B4F2E, #1A3C6E); }
+.ebook-cover-3 { background: linear-gradient(135deg, #0D2D6E, #1E4D8C, #9B6240); }
+.ebook-cover-4 { background: linear-gradient(135deg, #3B1E08, #7B4F2E, #0F2548); }
+
+// Cover gradients — courses
+.course-cover-1 { background: linear-gradient(135deg, #1A3C6E, #C9933A, #5C3418); }
+.course-cover-2 { background: linear-gradient(135deg, #5C3418, #C9933A, #1A3C6E); }
+.course-cover-3 { background: linear-gradient(135deg, #0A1E40, #1A3C6E, #7B4F2E); }
+.course-cover-4 { background: linear-gradient(135deg, #4A1B0C, #993C1D, #1A3C6E); }
+
+.cover-title {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.70), transparent);
+  z-index: 2;
+
+  span {
+    font-family: $font-sans;
+    font-size: 0.72rem; font-weight: 700;
+    color: $white; line-height: 1.3; display: block;
+  }
+}
+
+// ── Type badges ────────────────────────────────────────
+.pub-type-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 3;
+  font-family: $font-sans;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 50px;
+}
+
+.badge-ebook  { background: rgba(201,147,58,0.90); color: $white; }
+.badge-course { background: rgba(26,60,110,0.90); color: #7cc4fa; border: 1px solid rgba(56,138,253,0.40); }
+.badge-free   { background: rgba(22,163,74,0.85); color: $white; }
+
+// ── Card body ──────────────────────────────────────────
+.pub-card-body {
+  padding: 14px;
+
+  h3 {
+    font-family: $font-sans;
+    font-size: 0.85rem; font-weight: 700;
+    color: $white; margin-bottom: 6px; line-height: 1.4;
+  }
+}
+
+.pub-card-meta {
+  display: flex; align-items: center;
+  gap: 6px; flex-wrap: wrap;
+
+  span {
+    font-family: $font-sans;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.50);
+    display: flex; align-items: center; gap: 3px;
+
+    i { font-size: 0.75rem; }
+  }
+
+  .sep { color: rgba(255,255,255,0.20); }
+}
+
+
+
+
+.hover-price {
+  font-family: $font-serif;
+  font-size: 1.4rem; font-weight: 900;
+  color: $gold-light; line-height: 1;
+
+  &.free-price { color: #6EE7A0; }
+
+  small {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.40);
+    text-decoration: line-through;
+    margin-left: 5px; font-weight: 400;
+    font-family: $font-sans;
+  }
+}
+
+.hover-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%;
+  background: linear-gradient(135deg, $gold, $brown-mid);
+  color: $white; border: none;
+  border-radius: 50px; padding: 9px 16px;
+  font-family: $font-sans; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover { transform: scale(1.04); }
+
+  &.btn-free {
+    background: linear-gradient(135deg, #16A34A, #0F6E56);
+  }
+
+  &.hover-btn-out {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.75);
+
+    &:hover {
+      border-color: $gold-light;
+      color: $gold-light;
+    }
+  }
+}
+
+// ── Animations ─────────────────────────────────────────
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Card — increase height ─────────────────────────────
+.pub-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-up 0.5s ease both;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              border-color 0.3s, background 0.3s;
+  min-height: 270px;          // ← was no min-height, add this
+
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: rgba(201,147,58,0.50);
+    background: rgba(255,255,255,0.10);
+
+    .pub-card-hover { opacity: 1; }
+    .pub-card-cover,
+    .pub-card-body { filter: blur(2px); }
+  }
+}
+
+// ── Card cover — reduce height slightly ────────────────
+.pub-card-cover {
+  position: relative;
+  height: 140px;              // ← was 160px, reduce to give hover more room
+  overflow: hidden;
+}
+
+// ── Hover overlay — key fixes ──────────────────────────
+.pub-card-hover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(10,30,64,0.94), rgba(59,32,16,0.94));
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;    // ← was center, change to flex-start
+  gap: 6px;                       // ← was 8px, tighten gap
+  padding: 14px 16px;             // ← was 18px, reduce padding
+  opacity: 0;
+  transition: opacity 0.30s ease;
+  z-index: 10;
+  overflow-y: auto;               // ← add this so content never clips
+
+  h4 {
+    font-family: $font-sans;
+    font-size: 0.85rem;           // ← was 0.88rem, slightly smaller
+    font-weight: 800;
+    color: $white;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-size: 0.70rem;           // ← was 0.72rem
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    line-height: 1.5;             // ← was 1.6
+    margin: 0;
+  }
+}
+
+// ── Hover features — tighten ───────────────────────────
+.hover-features {
+  list-style: none;
+  padding: 0;
+  margin: 2px 0;                  // ← was 4px
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;                       // ← was 4px
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: $font-sans;
+    font-size: 0.70rem;           // ← was 0.72rem
+    color: rgba(255,255,255,0.70);
+
+    i { font-size: 0.72rem; color: $gold-light; }
+  }
+}
+
+// ── Hover price — tighten ──────────────────────────────
+.hover-price {
+  font-family: $font-serif;
+  font-size: 1.25rem;             // ← was 1.4rem
+  font-weight: 900;
+  color: $gold-light;
+  line-height: 1;
+
+  &.free-price { color: #6EE7A0; }
+
+  small {
+    font-size: 0.80rem;           // ← was 0.85rem
+    color: rgba(255,255,255,0.40);
+    text-decoration: line-through;
+    margin-left: 5px;
+    font-weight: 400;
+    font-family: $font-sans;
+  }
+}
+
+// ── Hover buttons — tighten ────────────────────────────
+.hover-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(135deg, $gold, $brown-mid);
+  color: $white;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 14px;              // ← was 9px 16px
+  font-family: $font-sans;
+  font-size: 0.75rem;             // ← was 0.78rem
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover { transform: scale(1.04); }
+
+  &.btn-free {
+    background: linear-gradient(135deg, #16A34A, #0F6E56);
+  }
+
+  &.hover-btn-out {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.75);
+    margin-top: 2px;              // ← add small gap between buttons
+
+    &:hover {
+      border-color: $gold-light;
+      color: $gold-light;
+    }
+  }
+}

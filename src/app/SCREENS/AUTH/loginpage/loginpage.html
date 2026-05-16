@@ -1,0 +1,269 @@
+<div class="login-root">
+
+  <!-- ── Animated background canvas ── -->
+  <div class="login-bg">
+    <div class="login-bg__mesh"></div>
+    <div class="login-bg__orb login-bg__orb--1"></div>
+    <div class="login-bg__orb login-bg__orb--2"></div>
+    <div class="login-bg__orb login-bg__orb--3"></div>
+    <div class="login-bg__grid"></div>
+  </div>
+
+  <!-- ── Floating particles ── -->
+  <div class="login-particles" aria-hidden="true">
+    <span class="lp" *ngFor="let p of particles"
+      [style.left]="p.x + '%'"
+      [style.top]="p.y + '%'"
+      [style.width]="p.size + 'px'"
+      [style.height]="p.size + 'px'"
+      [style.animation-delay]="p.delay + 's'"
+      [style.animation-duration]="p.duration + 's'">
+    </span>
+  </div>
+
+  <!-- ── Main card ── -->
+  <div class="login-card" [class.login-card--loaded]="isLoaded">
+
+    <!-- Brand strip (left panel) -->
+    <div class="login-brand">
+      <div class="lb-inner">
+        <div class="lb-logo">
+          <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+        <h2 class="lb-name">ETCHERS ACADEMY</h2>
+        <p class="lb-tagline">Design · Develop · Empower</p>
+
+        <div class="lb-features">
+          <div class="lb-feature" *ngFor="let f of brandFeatures; let i = index"
+            [style.animation-delay]="(0.4 + i * 0.12) + 's'">
+            <div class="lb-feature__icon"><i [class]="f.icon"></i></div>
+            <div class="lb-feature__text">
+              <span class="lb-feature__label">{{ f.label }}</span>
+              <span class="lb-feature__value">{{ f.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative rings -->
+        <div class="lb-ring lb-ring--1"></div>
+        <div class="lb-ring lb-ring--2"></div>
+        <div class="lb-ring lb-ring--3"></div>
+      </div>
+    </div>
+
+    <!-- Form panel (right) -->
+    <div class="login-form-panel">
+      <div class="lfp-inner">
+
+        <!-- Header -->
+        <div class="lfp-header">
+          <h1 class="lfp-title">
+            <ng-container *ngIf="activeTab === 'login'">Welcome back</ng-container>
+            <ng-container *ngIf="activeTab === 'register'">Create account</ng-container>
+          </h1>
+          <p class="lfp-sub">
+            <ng-container *ngIf="activeTab === 'login'">Sign in to your ETCHERS account</ng-container>
+            <ng-container *ngIf="activeTab === 'register'">Join 10,000+ learners & professionals</ng-container>
+          </p>
+        </div>
+
+        <!-- Tab switcher -->
+        <div class="lfp-tabs">
+          <button class="lfp-tab" [class.active]="activeTab==='login'"
+            (click)="switchTab('login')">Sign In</button>
+          <button class="lfp-tab" [class.active]="activeTab==='register'"
+            (click)="switchTab('register')">Register</button>
+          <span class="lfp-tab-slider" [class.right]="activeTab==='register'"></span>
+        </div>
+
+        <!-- ── GOOGLE SIGN IN ── -->
+        <button class="btn-google" (click)="signInWithGoogle()" [disabled]="loading">
+          <span class="btn-google__icon">
+            <svg width="18" height="18" viewBox="0 0 18 18">
+              <path fill="#4285F4" d="M17.64 9.2a10.34 10.34 0 00-.16-1.84H9v3.48h4.84a4.14 4.14 0 01-1.8 2.72v2.26h2.92c1.71-1.57 2.68-3.88 2.68-6.62z"/>
+              <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26a5.43 5.43 0 01-8.09-2.85H.78v2.33A8.99 8.99 0 009 18z"/>
+              <path fill="#FBBC05" d="M3.95 10.71a5.41 5.41 0 010-3.42V4.96H.78a9.01 9.01 0 000 8.08l3.17-2.33z"/>
+              <path fill="#EA4335" d="M9 3.58a4.86 4.86 0 013.44 1.35l2.58-2.58A8.64 8.64 0 009 0 8.99 8.99 0 00.78 4.96l3.17 2.33A5.36 5.36 0 019 3.58z"/>
+            </svg>
+          </span>
+          <span>Continue with Google</span>
+          <span class="btn-google__arrow"><i class="bi bi-arrow-right"></i></span>
+        </button>
+
+        <!-- Divider -->
+        <div class="lfp-divider">
+          <span class="lfp-divider__line"></span>
+          <span class="lfp-divider__text">or use mobile number</span>
+          <span class="lfp-divider__line"></span>
+        </div>
+
+        <!-- ── PHONE AUTH FLOW ── -->
+        <ng-container *ngIf="!otpSent; else otpBlock">
+
+          <!-- Phone input -->
+          <div class="lf-group" [class.lf-group--error]="formErrors['phone']"
+            [class.lf-group--success]="phoneForm.get('phone')?.valid && phoneForm.get('phone')?.touched">
+            <label class="lf-label">Mobile Number</label>
+            <div class="lf-phone-wrap" [formGroup]="phoneForm">
+              <!-- Country selector -->
+              <button type="button" class="lf-country-btn" (click)="toggleCountryDropdown()">
+                <span class="lf-country-flag">{{ selectedCountry.flag }}</span>
+                <span class="lf-country-code">{{ selectedCountry.dial }}</span>
+                <i class="bi bi-chevron-down lf-country-chevron"
+                  [class.rotated]="showCountryDropdown"></i>
+              </button>
+              <!-- Country dropdown -->
+              <div class="lf-country-dropdown" *ngIf="showCountryDropdown">
+                <input class="lf-country-search" type="text" placeholder="Search country..."
+                  [(ngModel)]="countrySearch" [ngModelOptions]="{standalone:true}">
+                <div class="lf-country-list">
+                  <button type="button" class="lf-country-item"
+                    *ngFor="let c of filteredCountries"
+                    (click)="selectCountry(c)">
+                    <span>{{ c.flag }}</span>
+                    <span class="lf-ci-name">{{ c.name }}</span>
+                    <span class="lf-ci-dial">{{ c.dial }}</span>
+                  </button>
+                </div>
+              </div>
+              <input type="tel" class="lf-input lf-phone-input"
+                formControlName="phone"
+                placeholder="98765 43210"
+                maxlength="15"
+                (keydown.enter)="sendOtp()">
+            </div>
+            <span class="lf-error" *ngIf="formErrors['phone']">
+              <i class="bi bi-exclamation-circle me-1"></i>{{ formErrors['phone'] }}
+            </span>
+          </div>
+
+          <!-- Register extra fields -->
+          <ng-container *ngIf="activeTab === 'register'" [formGroup]="registerForm">
+            <div class="lf-row">
+              <div class="lf-group" [class.lf-group--error]="registerErrors['firstName']">
+                <label class="lf-label">First Name</label>
+                <div class="lf-input-wrap">
+                  <i class="bi bi-person lf-input-icon"></i>
+                  <input type="text" class="lf-input lf-input--icon"
+                    formControlName="firstName" placeholder="Aarav">
+                </div>
+                <span class="lf-error" *ngIf="registerErrors['firstName']">{{ registerErrors['firstName'] }}</span>
+              </div>
+              <div class="lf-group" [class.lf-group--error]="registerErrors['lastName']">
+                <label class="lf-label">Last Name</label>
+                <div class="lf-input-wrap">
+                  <i class="bi bi-person lf-input-icon"></i>
+                  <input type="text" class="lf-input lf-input--icon"
+                    formControlName="lastName" placeholder="Sharma">
+                </div>
+                <span class="lf-error" *ngIf="registerErrors['lastName']">{{ registerErrors['lastName'] }}</span>
+              </div>
+            </div>
+            <div class="lf-group" [class.lf-group--error]="registerErrors['email']">
+              <label class="lf-label">Email Address <span class="lf-optional">(optional)</span></label>
+              <div class="lf-input-wrap">
+                <i class="bi bi-envelope lf-input-icon"></i>
+                <input type="email" class="lf-input lf-input--icon"
+                  formControlName="email" placeholder="aarav@example.com">
+              </div>
+              <span class="lf-error" *ngIf="registerErrors['email']">{{ registerErrors['email'] }}</span>
+            </div>
+          </ng-container>
+
+          <!-- Send OTP button -->
+          <button class="btn-otp" (click)="sendOtp()" [disabled]="loading">
+            <span *ngIf="!loading">
+              <i class="bi bi-phone-fill me-2"></i>
+              {{ activeTab === 'login' ? 'Send OTP' : 'Create Account & Send OTP' }}
+            </span>
+            <span *ngIf="loading" class="btn-spinner">
+              <span class="spinner"></span> Sending OTP…
+            </span>
+          </button>
+
+          <!-- reCAPTCHA container -->
+          <div id="recaptcha-container" class="lf-recaptcha"></div>
+
+        </ng-container>
+
+        <!-- ── OTP BLOCK ── -->
+        <ng-template #otpBlock>
+
+          <div class="otp-info">
+            <i class="bi bi-shield-check-fill otp-info__icon"></i>
+            <div>
+              <p class="otp-info__title">OTP sent to</p>
+              <p class="otp-info__number">{{ selectedCountry.dial }} {{ phoneForm.get('phone')?.value }}</p>
+            </div>
+            <button class="otp-change-btn" (click)="resetPhoneEntry()">
+              <i class="bi bi-pencil-fill me-1"></i>Change
+            </button>
+          </div>
+
+          <!-- OTP boxes -->
+          <div class="otp-boxes-label"><label class="lf-label">Enter 6-digit OTP</label></div>
+          <div class="otp-boxes">
+            <input *ngFor="let ctrl of otpControls; let i = index"
+              type="text" inputmode="numeric" maxlength="1"
+              class="otp-box"
+              [class.otp-box--filled]="ctrl.value"
+              [class.otp-box--error]="otpError"
+              [value]="ctrl.value"
+              (input)="onOtpInput($event, i)"
+              (keydown)="onOtpKeydown($event, i)"
+              (paste)="onOtpPaste($event)"
+              #otpRef>
+          </div>
+
+          <span class="lf-error otp-error" *ngIf="otpError">
+            <i class="bi bi-x-circle me-1"></i>{{ otpError }}
+          </span>
+
+          <!-- Countdown & resend -->
+          <div class="otp-resend-row">
+            <span class="otp-timer" *ngIf="otpCountdown > 0">
+              <i class="bi bi-clock me-1"></i>Resend in {{ otpCountdown }}s
+            </span>
+            <button class="otp-resend-btn" *ngIf="otpCountdown === 0"
+              (click)="resendOtp()">
+              <i class="bi bi-arrow-repeat me-1"></i>Resend OTP
+            </button>
+          </div>
+
+          <!-- Verify button -->
+          <button class="btn-otp btn-otp--verify" (click)="verifyOtp()" [disabled]="loading || otpValue.length < 6">
+            <span *ngIf="!loading">
+              <i class="bi bi-shield-lock-fill me-2"></i>
+              {{ activeTab === 'login' ? 'Verify & Sign In' : 'Verify & Register' }}
+            </span>
+            <span *ngIf="loading" class="btn-spinner">
+              <span class="spinner"></span> Verifying…
+            </span>
+          </button>
+
+        </ng-template>
+
+        <!-- ── SUCCESS STATE ── -->
+        <div class="login-success" *ngIf="isSuccess">
+          <div class="ls-check"><i class="bi bi-check-lg"></i></div>
+          <h4>You're in!</h4>
+          <p>Redirecting to your dashboard…</p>
+        </div>
+
+        <!-- Terms -->
+        <p class="lfp-terms">
+          By continuing, you agree to ETCHERS'
+          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Back to home -->
+  <a  (click)="back()" class="login-home-link">
+    <i class="bi bi-arrow-left me-2"></i>Back to home
+  </a>
+
+</div>

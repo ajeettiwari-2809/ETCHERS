@@ -1,0 +1,213 @@
+<section class="pub-page">
+
+  <div class="pub-shape pub-shape-1"></div>
+  <div class="pub-shape pub-shape-2"></div>
+  <div class="pub-overlay"></div>
+
+  <div class="pub-inner">
+
+    <!-- Hero -->
+    <div class="pub-hero">
+      <span class="pub-badge">
+        <i class="bi bi-book-half me-2"></i>Knowledge Hub
+      </span>
+      <h1 class="pub-title">Learn. Read. <em>Grow.</em></h1>
+      <p class="pub-subtitle">
+        Curated ebooks and professional courses designed to accelerate your
+        digital career — from beginner to expert.
+      </p>
+      <div class="pub-stats">
+        <div class="pub-stat">
+          <strong>48+</strong><span>Publications</span>
+        </div>
+        <div class="pub-divider"></div>
+        <div class="pub-stat">
+          <strong>5K+</strong><span>Learners</span>
+        </div>
+        <div class="pub-divider"></div>
+        <div class="pub-stat">
+          <strong>4.9★</strong><span>Avg Rating</span>
+        </div>
+        <div class="pub-divider"></div>
+        <div class="pub-stat">
+          <strong>₹50L+</strong><span>Earned by Students</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="pub-tabs">
+      <button
+        *ngFor="let tab of tabs"
+        class="pub-tab"
+        [class.active]="activeTab === tab.key"
+        (click)="setTab(tab.key)"
+      >
+        <i [class]="'bi ' + tab.icon + ' me-1'"></i>{{ tab.label }}
+      </button>
+    </div>
+
+    <!-- Featured -->
+    <div class="pub-section" *ngIf="activeTab === 'all' || activeTab === 'ebooks'">
+      <div class="pub-section-label">
+        <h2>Featured this month</h2>
+        <div class="label-line"></div>
+        <span class="label-badge">Editor's pick</span>
+      </div>
+      <div class="pub-featured-card">
+        <div class="pub-featured-cover">
+          <i class="bi bi-code-slash"></i>
+        </div>
+        <div class="pub-featured-body">
+          <div>
+            <div class="featured-tag">
+              <i class="bi bi-star-fill me-1"></i>Bestseller · Ebook
+            </div>
+            <h2>The Complete Web Developer Roadmap 2026</h2>
+            <p>
+              From HTML basics to full-stack mastery — a structured guide
+              covering frontend, backend, databases, deployment, and
+              freelancing strategies.
+            </p>
+            <div class="featured-meta">
+              <div class="featured-meta-item">
+                <i class="bi bi-file-text"></i> 320 pages
+              </div>
+              <div class="featured-meta-item">
+                <i class="bi bi-translate"></i> English + Hindi
+              </div>
+              <div class="featured-meta-item">
+                <i class="bi bi-download"></i> PDF + EPUB
+              </div>
+              <div class="featured-meta-item">
+                <i class="bi bi-people"></i> 2.1K readers
+              </div>
+            </div>
+          </div>
+          <div class="featured-bottom">
+            <div class="featured-price">
+              ₹499 <small>₹999</small>
+            </div>
+            <div class="featured-btns">
+              <button class="btn-gold">
+                <i class="bi bi-cart-fill me-2"></i>Buy now
+              </button>
+              <button class="btn-glass">
+                <i class="bi bi-eye me-2"></i>Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ebooks Grid -->
+    <div class="pub-section" *ngIf="activeTab === 'all' || activeTab === 'ebooks' || activeTab === 'free' || activeTab === 'bestsellers'">
+      <div class="pub-section-label">
+        <h2>Ebooks</h2>
+        <div class="label-line"></div>
+        <span class="label-badge">{{ filteredEbooks.length }} titles</span>
+      </div>
+      <div class="pub-grid">
+        <div
+          class="pub-card"
+          *ngFor="let item of filteredEbooks; let i = index"
+          [style.animation-delay]="(i * 80) + 'ms'"
+        >
+          <div class="pub-card-cover">
+            <div class="pub-card-cover-bg" [class]="item.coverClass">
+              <i [class]="'bi ' + item.icon"></i>
+              <div class="cover-title"><span>{{ item.title }}</span></div>
+            </div>
+            <span class="pub-type-badge" [class]="item.free ? 'badge-free' : 'badge-ebook'">
+              {{ item.free ? 'Free' : 'Ebook' }}
+            </span>
+          </div>
+          <div class="pub-card-body">
+            <h3>{{ item.title }}</h3>
+            <div class="pub-card-meta">
+              <span><i class="bi bi-file-text"></i> {{ item.pages }} pages</span>
+              <span class="sep">·</span>
+              <span><i class="bi bi-star-fill"></i> {{ item.rating }}</span>
+            </div>
+          </div>
+          <div class="pub-card-hover">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.desc }}</p>
+            <ul class="hover-features">
+              <li *ngFor="let f of item.features">
+                <i class="bi bi-check-circle-fill"></i> {{ f }}
+              </li>
+            </ul>
+            <div class="hover-price" [class.free-price]="item.free">
+              {{ item.free ? 'Free' : item.price }}
+              <small *ngIf="!item.free">{{ item.originalPrice }}</small>
+            </div>
+            <button class="hover-btn" [class.btn-free]="item.free">
+              <i [class]="item.free ? 'bi bi-download me-2' : 'bi bi-cart-fill me-2'"></i>
+              {{ item.free ? 'Download free' : 'Purchase' }}
+            </button>
+            <button class="hover-btn hover-btn-out" *ngIf="!item.free">
+              <i class="bi bi-eye me-2"></i>Preview
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="pub-section" *ngIf="activeTab === 'all' || activeTab === 'courses' || activeTab === 'free' || activeTab === 'bestsellers'">
+      <div class="pub-section-label">
+        <h2>Courses</h2>
+        <div class="label-line"></div>
+        <span class="label-badge">{{ filteredCourses.length }} courses</span>
+      </div>
+      <div class="pub-grid">
+        <div
+          class="pub-card"
+          *ngFor="let item of filteredCourses; let i = index"
+          [style.animation-delay]="(i * 80) + 'ms'"
+        >
+          <div class="pub-card-cover">
+            <div class="pub-card-cover-bg" [class]="item.coverClass">
+              <i [class]="'bi ' + item.icon"></i>
+              <div class="cover-title"><span>{{ item.title }}</span></div>
+            </div>
+            <span class="pub-type-badge" [class]="item.free ? 'badge-free' : 'badge-course'">
+              {{ item.free ? 'Free' : 'Course' }}
+            </span>
+          </div>
+          <div class="pub-card-body">
+            <h3>{{ item.title }}</h3>
+            <div class="pub-card-meta">
+              <span><i class="bi bi-clock"></i> {{ item.hours }} hrs</span>
+              <span class="sep">·</span>
+              <span><i class="bi bi-people"></i> {{ item.students }}</span>
+            </div>
+          </div>
+          <div class="pub-card-hover">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.desc }}</p>
+            <ul class="hover-features">
+              <li *ngFor="let f of item.features">
+                <i class="bi bi-check-circle-fill"></i> {{ f }}
+              </li>
+            </ul>
+            <div class="hover-price" [class.free-price]="item.free">
+              {{ item.free ? 'Free' : item.price }}
+              <small *ngIf="!item.free">{{ item.originalPrice }}</small>
+            </div>
+            <button class="hover-btn" [class.btn-free]="item.free">
+              <i [class]="item.free ? 'bi bi-play-circle-fill me-2' : 'bi bi-play-circle-fill me-2'"></i>
+              {{ item.free ? 'Start free' : 'Enroll now' }}
+            </button>
+            <button class="hover-btn hover-btn-out" *ngIf="!item.free">
+              <i class="bi bi-eye me-2"></i>Preview
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,7 +1,6 @@
 <!-- ===== NAVBAR ===== -->
 
 
-<img src="assets/marqueeimage/graficdesigner.png" alt="Background" class="hero-bg-img">
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top ngo-navbar">
   <div class="container">
@@ -17,13 +16,15 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
         <li class="nav-item"><a class="nav-link" href="#about"><i class="bi bi-info-circle me-1"></i>About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#causes"><i class="bi bi-heart me-1"></i>Causes</a></li>
-        <li class="nav-item"><a class="nav-link" href="#impact"><i class="bi bi-graph-up me-1"></i>Impact</a></li>
-        <li class="nav-item"><a class="nav-link" href="#team"><i class="bi bi-people me-1"></i>Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#causes"><i class="bi bi-heart me-1"></i>COURSE`s</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#impact"><i class="bi bi-graph-up me-1"></i>Impact</a></li> -->
+        <!-- <li class="nav-item"><a class="nav-link" href="#team"><i class="bi bi-people me-1"></i>Team</a></li> -->
         <li class="nav-item"><a class="nav-link" href="#events"><i class="bi bi-calendar3 me-1"></i>Events</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/careers']"><i class="bi bi-briefcase me-1"></i>Careers</a></li>
+         <li class="nav-item"><a class="nav-link" [routerLink]="['/publications']"><i class="bi bi-journal me-1"></i>Publications</a></li>
         <li class="nav-item ms-lg-2">
-          <a class="btn btn-donate" href="#donate"><i class="bi bi-gift-fill me-2"></i>JOIN Now</a>
+          <a class="btn btn-donate"  [routerLink]="['/login']"><i class="bi bi-gift-fill me-2"></i>Login Now</a>
         </li>
       </ul>
     </div>
@@ -660,7 +661,7 @@
 <section class="causes-section section-pad bg-light-section" id="causes">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="section-tag mx-auto"><i class="bi bi-heart me-2"></i>Our Causes</div>
+      <div class="section-tag mx-auto"><i class="bi bi-heart me-2"></i>Our Course`s</div>
       <h2 class="section-title">What We Provided </h2>
       <p class="section-subtitle">Six pillars that guide every project we undertake across the country</p>
     </div>
@@ -726,7 +727,7 @@
 </section>
 
 <!-- ===== PROGRAMS / WHAT WE DO ===== -->
-<section class="programs-section section-pad" id="programs">
+<section class="programs-section section-pad" id="programs" *ngIf="false">
   <div class="container">
     <div class="text-center mb-5">
       <div class="section-tag mx-auto"><i class="bi bi-grid-3x3-gap me-2"></i>Programs</div>
@@ -751,69 +752,9 @@
 </section>
 
 <!-- ===== DONATE SECTION ===== -->
-<section class="donate-section section-pad" id="donate" *ngIf="false">
-  <div class="container">
-    <div class="donate-wrapper">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-5">
-          <div class="section-tag"><i class="bi bi-gift-fill me-2"></i>Make a Difference</div>
-          <h2 class="section-title">Your Donation<br>Saves Lives</h2>
-          <p class="section-text">Every rupee you donate goes directly to the ground — no hidden fees, full transparency with impact reports.</p>
-          <div class="donation-perks mt-4">
-            <div class="perk"><i class="bi bi-receipt-cutoff"></i> 80G Tax Exemption Certificate</div>
-            <div class="perk"><i class="bi bi-shield-lock-fill"></i> 100% Secure Payments</div>
-            <div class="perk"><i class="bi bi-bar-chart-fill"></i> Monthly Impact Report</div>
-            <div class="perk"><i class="bi bi-patch-check-fill"></i> FCRA Registered NGO</div>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="donate-card">
-            <h5 class="mb-4"><i class="bi bi-heart-fill text-danger me-2"></i>Choose Your Contribution</h5>
-            <div class="amount-grid">
-              <button class="amount-btn" *ngFor="let amt of donationAmounts"
-                [class.active]="selectedAmount === amt"
-                (click)="selectAmount(amt)">
-                ₹{{amt | number}}
-              </button>
-            </div>
-            <div class="custom-amount mt-3">
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
-                <input type="number" class="form-control" placeholder="Enter custom amount"
-                  [(ngModel)]="customAmount" (focus)="selectedAmount = 0">
-              </div>
-            </div>
-            <div class="cause-select mt-3">
-              <label class="form-label fw-semibold"><i class="bi bi-tag-fill me-2 text-primary"></i>Donate Towards</label>
-              <select class="form-select">
-                <option>Education Programs</option>
-                <option>Healthcare Camps</option>
-                <option>Clean Water Initiative</option>
-                <option>Women Empowerment</option>
-                <option>Environmental Projects</option>
-                <option>Where Needed Most</option>
-              </select>
-            </div>
-            <div class="frequency-toggle mt-3 d-flex gap-2">
-              <button class="freq-btn active"><i class="bi bi-arrow-repeat me-1"></i>Monthly</button>
-              <button class="freq-btn"><i class="bi bi-calendar-check me-1"></i>One-Time</button>
-            </div>
-            <button class="btn btn-donate-main w-100 mt-4">
-              <i class="bi bi-heart-fill me-2"></i>Donate Now
-              <i class="bi bi-arrow-right ms-2"></i>
-            </button>
-            <p class="text-center text-muted small mt-3">
-              <i class="bi bi-lock-fill me-1 text-success"></i>
-              Secured by Razorpay. Your data is safe with us.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="donate-section section-pad" id="donate">
+
+<section class="donate-section section-pad" id="donate" *ngIf="false">
   <div class="container">
     <div class="donate-wrapper">
       <div class="row g-5 align-items-center">
@@ -924,36 +865,8 @@
 </section>
 
 <!-- ===== TEAM SECTION ===== -->
+
 <section class="team-section section-pad bg-light-section" id="team" *ngIf="false">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="section-tag mx-auto"><i class="bi bi-people-fill me-2"></i>Our Team</div>
-      <h2 class="section-title">The Faces Behind the Mission</h2>
-    </div>
-    <div class="row g-4 justify-content-center">
-      <div class="col-sm-6 col-lg-3" *ngFor="let member of teamMembers">
-        <div class="team-card">
-          <div class="team-avatar">
-            <div class="avatar-circle">
-              <i class="bi bi-person-fill"></i>
-            </div>
-            <div class="team-socials">
-              <a href="#" class="social-btn"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
-              <a href="#" class="social-btn"><i class="bi bi-envelope-fill"></i></a>
-            </div>
-          </div>
-          <div class="team-info">
-            <h6 class="team-name">{{member.name}}</h6>
-            <span class="team-role">{{member.role}}</span>
-            <p class="team-bio text-muted small mt-2">{{member.bio}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="team-section section-pad bg-light-section" id="team">
   <div class="container">
 
     <div class="text-center mb-5">
@@ -1002,32 +915,7 @@
 </section>
 
 <!-- ===== TESTIMONIALS ===== -->
-<section class="testimonial-section section-pad" *ngIf="false">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="section-tag mx-auto"><i class="bi bi-chat-quote-fill me-2"></i>Stories</div>
-      <h2 class="section-title">Words From Those We Served</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4" *ngFor="let t of testimonials">
-        <div class="testimonial-card">
-          <div class="quote-icon"><i class="bi bi-quote"></i></div>
-          <p class="testimonial-text">"{{t.text}}"</p>
-          <div class="testimonial-stars">
-            <i class="bi bi-star-fill" *ngFor="let s of [1,2,3,4,5]"></i>
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar"><i class="bi bi-person-circle"></i></div>
-            <div>
-              <strong>{{t.name}}</strong>
-              <small class="d-block text-muted">{{t.location}}</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="testimonial-section section-pad">
   <div class="container">
@@ -1080,34 +968,7 @@
 </section>
 
 <!-- ===== EVENTS SECTION ===== -->
-<section class="events-section section-pad bg-light-section" id="events" *ngIf="false">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="section-tag mx-auto"><i class="bi bi-calendar-event me-2"></i>Upcoming Events</div>
-      <h2 class="section-title">Join Us On the Ground</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4" *ngFor="let event of events">
-        <div class="event-card">
-          <div class="event-date-badge" [ngClass]="event.colorClass">
-            <span class="event-day">{{event.day}}</span>
-            <span class="event-month">{{event.month}}</span>
-          </div>
-          <div class="event-content">
-            <span class="event-type"><i [class]="event.icon + ' me-1'"></i>{{event.type}}</span>
-            <h5 class="event-title">{{event.title}}</h5>
-            <div class="event-meta">
-              <span><i class="bi bi-geo-alt-fill me-1 text-danger"></i>{{event.location}}</span>
-              <span><i class="bi bi-clock-fill me-1 text-primary"></i>{{event.time}}</span>
-              <span><i class="bi bi-person-check-fill me-1 text-success"></i>{{event.spots}} spots left</span>
-            </div>
-            <a href="#" class="btn btn-event">Register <i class="bi bi-arrow-right-short"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="events-section section-pad bg-light-section" id="events">
   <div class="container">
@@ -1178,7 +1039,7 @@
 </section>
 
 <!-- ===== PARTNERS SECTION ===== -->
-<section class="partners-section section-pad">
+<section class="partners-section section-pad" *ngIf="false">
   <div class="container">
     <div class="text-center mb-4">
       <h5 class="text-muted"><i class="bi bi-buildings-fill me-2"></i>Our Ecosystem & Tools</h5>
@@ -1317,33 +1178,7 @@
 
 
 <!-- ===== NEWSLETTER ===== -->
-<section class="newsletter-section" *ngIf="false">
-  <div class="container">
-    <div class="newsletter-box">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-5">
-          <div class="section-tag"><i class="bi bi-envelope-heart me-2"></i>Stay Connected</div>
-          <h3>Get Monthly Impact Updates</h3>
-          <p class="text-muted">Join 10,000+ supporters receiving our newsletter with stories, events & how your donations are used.</p>
-        </div>
-        <div class="col-lg-7">
-          <div class="newsletter-form">
-            <div class="input-group newsletter-input-group">
-              <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-              <input type="text" class="form-control" placeholder="Your full name">
-              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-              <input type="email" class="form-control" placeholder="Your email address">
-              <button class="btn btn-newsletter">
-                <i class="bi bi-send-fill me-2"></i>Subscribe
-              </button>
-            </div>
-          </div>
-          <p class="text-muted small mt-2"><i class="bi bi-shield-check me-1"></i>No spam, unsubscribe anytime.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <section class="newsletter-section">
   <div class="container">
 
@@ -1405,108 +1240,7 @@
 </section>
 
 <!-- ===== CONTACT SECTION ===== -->
-<section class="contact-section section-pad" id="contact" *ngIf="false">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="section-tag mx-auto"><i class="bi bi-envelope-open me-2"></i>Contact Us</div>
-      <h2 class="section-title">Reach Out to Us</h2>
-    </div>
-    <div class="row g-5">
-      <div class="col-lg-4">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
-            <div>
-              <h6>Visit Us</h6>
-              <p class="text-muted mb-0">42, Hope Street, Andheri West<br>Mumbai, Maharashtra 400053</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
-            <div>
-              <h6>Call Us</h6>
-              <p class="text-muted mb-0">+91 98765 43210<br>+91 22 4455 6677</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
-            <div>
-              <h6>Email Us</h6>
-              <p class="text-muted mb-0">info&#64;hopeforward.org<br>donate&#64;hopeforward.org</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="bi bi-clock-fill"></i></div>
-            <div>
-              <h6>Office Hours</h6>
-              <p class="text-muted mb-0">Mon-Sat: 9AM – 6PM IST<br>Sunday: Closed</p>
-            </div>
-          </div>
-          <div class="social-links mt-4">
-            <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="contact-form-card">
-          <h5 class="mb-4"><i class="bi bi-chat-dots-fill me-2 text-primary"></i>Send Us a Message</h5>
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label class="form-label">Full Name</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                <input type="text" class="form-control" placeholder="John Doe">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <label class="form-label">Email Address</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                <input type="email" class="form-control" placeholder="john@example.com">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <label class="form-label">Phone</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                <input type="tel" class="form-control" placeholder="+91 98765 43210">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <label class="form-label">Subject</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                <select class="form-select">
-                  <option>General Inquiry</option>
-                  <option>Volunteer</option>
-                  <option>Donation Query</option>
-                  <option>Partnership</option>
-                  <option>Media</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12">
-              <label class="form-label">Message</label>
-              <div class="input-group">
-                <span class="input-group-text align-items-start pt-2"><i class="bi bi-chat-text"></i></span>
-                <textarea class="form-control" rows="5" placeholder="How can we help you?"></textarea>
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary-custom w-100">
-                <i class="bi bi-send-fill me-2"></i>Send Message
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <section class="contact-section section-pad" id="contact">
   <div class="container">
 
@@ -1676,67 +1410,7 @@
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer class="site-footer" *ngIf="false">
-  <div class="footer-main">
-    <div class="container">
-      <div class="row g-5">
-        <div class="col-lg-4">
-          <div class="footer-brand d-flex align-items-center gap-2 mb-3">
-            <div class="brand-icon-sm"><i class="bi bi-heart-pulse-fill"></i></div>
-            <span class="brand-name-footer">HopeForward</span>
-          </div>
-          <p class="footer-desc">Transforming lives through compassionate action and community-led development since 2010.</p>
-          <div class="footer-certifications mt-3 d-flex gap-2 flex-wrap">
-            <span class="cert-badge"><i class="bi bi-patch-check-fill me-1"></i>80G Certified</span>
-            <span class="cert-badge"><i class="bi bi-shield-fill-check me-1"></i>FCRA Registered</span>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-2">
-          <h6 class="footer-heading">Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="#about"><i class="bi bi-chevron-right me-1"></i>About Us</a></li>
-            <li><a href="#causes"><i class="bi bi-chevron-right me-1"></i>Our Causes</a></li>
-            <li><a href="#programs"><i class="bi bi-chevron-right me-1"></i>Programs</a></li>
-            <li><a href="#events"><i class="bi bi-chevron-right me-1"></i>Events</a></li>
-            <li><a href="#contact"><i class="bi bi-chevron-right me-1"></i>Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6 col-lg-2">
-          <h6 class="footer-heading">Get Involved</h6>
-          <ul class="footer-links">
-            <li><a href="#donate"><i class="bi bi-heart-fill me-1 text-danger"></i>Donate</a></li>
-            <li><a href="#"><i class="bi bi-person-check me-1"></i>Volunteer</a></li>
-            <li><a href="#"><i class="bi bi-buildings me-1"></i>Corporate CSR</a></li>
-            <li><a href="#"><i class="bi bi-megaphone me-1"></i>Fundraise</a></li>
-            <li><a href="#"><i class="bi bi-book me-1"></i>Internship</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4">
-          <h6 class="footer-heading">Latest Updates</h6>
-          <div class="footer-updates">
-            <div class="update-item" *ngFor="let u of footerUpdates">
-              <i [class]="u.icon + ' update-icon'"></i>
-              <div>
-                <p class="update-text">{{u.text}}</p>
-                <small class="update-date"><i class="bi bi-calendar3 me-1"></i>{{u.date}}</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
-      <p class="mb-0">© 2025 HopeForward NGO. All rights reserved. Made with <i class="bi bi-heart-fill text-danger mx-1"></i> for humanity.</p>
-      <div class="footer-bottom-links">
-        <a >Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Annual Report</a>
-      </div>
-    </div>
-  </div>
-</footer>
+
 
 <footer class="site-footer">
 
